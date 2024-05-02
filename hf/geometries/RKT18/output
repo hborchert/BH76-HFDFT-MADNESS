@@ -1,0 +1,1703 @@
+(dn011:0,1)
+
+MADNESS runtime initialized with 17 threads in the pool and affinity OFF
+
+================================================================================
+   MOLDFT -- molecular DFT and Hartree-Fock code
+================================================================================ 
+
+
+--------------------------------------------
+   MADNESS 0.10.1 multiresolution suite
+--------------------------------------------
+
+   number of processors ... 2
+    processor frequency ... 2.394352e+09
+            host system ... Linux
+          configured by ... hborchert
+          configured on ... dn056
+          configured at ... 2024-04-30T11:50:31
+                    CXX ... /gpfs/software/gcc/12.1.0/bin/c++
+               CXXFLAGS ... -std=c++17
+             tuning for ... default
+                    MPI ... multiple
+ multi-threaded runtime ... MADNESS ThreadPool
+                   BLAS ... Intel MKL 45481 45541 MFLOP/s
+               compiled ... 11:50:55  on  Apr 30 2024
+    git source description ...     last_svn-5193-gb7c6dfc93-dirty
+    built date/time ...     Apr 30 2024/11:50:54
+
+input filename:  struc.xyz
+
+
+
+ MADNESS Hartree-Fock and Density Functional Theory Program
+ ----------------------------------------------------------
+
+
+
+geometry
+         source_type  inputfile  # derived   where to get the coordinates from       [inputfile, xyz, library]
+         source_name  struc.xyz  # derived   name of the geometry from the library or the input file
+               eprec  1.0000e-04 # default   smoothing for the nuclear potential
+               units  angstrom   # defined   coordinate units                        [atomic, angstrom, bohr, au]
+               field  [0.0000e+00, 0.0000e+00, 0.0000e+00] # default   external electric field
+           no_orient  false      # default   if true the molecule coordinates will not be reoriented and/or symmetrized
+              symtol  -1.0000e-02 # default   distance threshold for determining the symmetry-equivalent atoms; 
+                                 #            negative: old algorithm
+           core_type  none       # default   core potential type                     [none, mcp]
+            psp_calc  false      # default   pseudopotential calculation for all atoms
+             pure_ae  true       # default   pure all electron calculation with no pseudo-atoms
+    C        -5.6819795e-05        -0.021024924           2.2668718
+    N         2.7945076e-05          0.24540437          -2.6469686
+    H             1.7632212         -0.96929879           2.6960018
+    H            -1.6783489           -1.117552           2.6832418
+    H          -0.086519913           1.9328202           2.8728319
+    H          0.0018911983           0.2397993          -0.3570174
+    H        -9.8218792e-05          -1.6774498          -2.9675087
+end
+
+
+dft
+              prefix  struc      # derived   prefixes your output/restart/json/plot/etc files
+              charge  0.0000e+00 # default   total molecular charge
+                  xc  hf         # defined   XC input line
+             hfexalg  multiworld # default   hf exchange algorithm: choose from multiworld (default), smallmem, 
+                                 #           largemem
+               smear  0.0000e+00 # default   smearing parameter
+               econv  1.0000e-05 # default   energy convergence
+               dconv  1.0000e-04 # default   density convergence
+convergence_criteria  [bsh_residual, total_energy] # default   possible values are: bsh_residual, total_energy, 
+                                 #                             each_energy, density
+                   k  -1         # default   polynomial order
+                   l  5.2968e+01 # derived   user coordinates box size
+               deriv  abgv       # default   derivative method                       [abgv, bspline, ble]
+           dft_deriv  abgv       # default   derivative method for gga               [abgv, bspline, ble]
+                                 #           potentials
+             maxrotn  2.5000e-01 # default   step restriction used in autoshift algorithm
+             nvalpha  0          # default   number of alpha virtuals to compute
+              nvbeta  0          # default   number of beta virtuals to compute
+               nopen  2          # defined   number of unpaired electrons = nalpha-nbeta
+             maxiter  25         # default   maximum number of iterations
+                 nio  1          # default   no. of io servers to use
+     spin_restricted  false      # derived   true if spin restricted
+              plotlo  0          # default   range of MOs to print (for both spins if polarized
+              plothi  -1         # default   range of MOs to print (for both spins if polarized
+            plotdens  false      # default   If true print the density at convergence
+            plotcoul  false      # default   If true plot the total coulomb potential at convergence
+            localize  new        # default   localization method                     [pm, boys, new, canon]
+          pointgroup  c1         # derived   use point (sub) group symmetry if       [c1, c2, ci, cs, c2v, c2h, d2, d2h]
+                                 #           not localized
+             restart  false      # default   if true restart from orbitals on disk
+           restartao  false      # default   if true restart from orbitals projected into AO basis (STO3G) on disk
+              noiter  false      # default   if true break after computing energies for HF-DFT
+          no_compute  false      # default   if true use orbitals on disk, set value to computed
+                save  true       # default   if true save orbitals to disk
+              maxsub  10         # default   size of iterative subspace ... set to 0 or 1 to disable
+        orbitalshift  0.0000e+00 # default   scf orbital shift: shift the occ orbitals to lower energies
+            npt_plot  101        # default   no. of points to use in each dim for plots
+           plot_cell  []         # default   lo hi in each dimension for plotting (default is all space)
+             aobasis  6-31g      # derived   AO basis used for initial guess (6-31gss, 6-31g, 3-21g, sto-6g, sto-3g)
+         derivatives  false      # default   if true calculate nuclear derivatives
+              dipole  false      # default   if true calculate dipole moment
+      conv_only_dens  false      # default   if true remove bsh_residual from convergence criteria (deprecated)
+            psp_calc  false      # default   pseudopotential calculation for all atoms
+            pcm_data  none       # default   do a PCM (solvent) calculation
+             ac_data  none       # default   do a calculation with asymptotic correction (see ACParameters class in 
+                                 #           chem/AC.h for details)
+             pure_ae  true       # default   pure all electron calculation with no pseudo-atoms
+         print_level  3          # default   0: no output; 1: final energy; 2: iterations; 3: timings; 10: debug
+ molecular_structure  inputfile  # default   where to read the molecule from: inputfile or name from the library
+              nalpha  10         # derived   number of alpha spin electrons
+               nbeta  8          # derived   number of beta  spin electrons
+           nmo_alpha  10         # derived   number of alpha spin molecular orbitals
+            nmo_beta  8          # derived   number of beta spin molecular orbitals
+                  lo  1.6603e-03 # derived   smallest length scale we need to resolve
+            protocol  [1.0000e-04, 1.0000e-06] # derived   calculation protocol
+                gopt  false      # default   geometry optimizer
+                gtol  1.0000e-04 # default   geometry tolerance
+               gtest  false      # default   geometry tolerance
+                gval  1.0000e-05 # default   value precision
+               gprec  1.0000e-04 # default   gradient precision
+            gmaxiter  20         # default   optimization maxiter
+    ginitial_hessian  false      # default   compute inital hessian for optimization
+              algopt  bfgs       # default   algorithm used for optimization         [bfgs, cg]
+           nv_factor  1          # default   factor to multiply number of virtual orbitals with when automatically 
+                                 #           decreasing nvirt
+           vnucextra  2          # default   load balance parameter for nuclear pot
+        loadbalparts  2          # default   ??
+              nwfile  none       # default   Base name of nwchem output files (.out and .movecs extensions) to read 
+                                 #           from
+timer:           initialize     0.21s     0.21s
+
+Solving NDIM= 3  with thresh 1.000000e-04     k 6    conv 1.000000e-04 
+
+timer:     Project vnuclear     0.12s     0.12s
+data distribution info before redistributing
+   total:  48043
+   procs: 24122 23921 
+data distribution info after redistributing
+   total:  48043
+   procs: 20922 27121 
+
+Solving NDIM= 3  with thresh 1.000000e-04     k 6    conv 1.000000e-04 
+
+timer:     Project vnuclear     0.14s     0.14s
+timer:        guess density     0.14s     0.14s
+data distribution info before redistributing
+   total:  64008
+   procs: 30408 33600 
+data distribution info after redistributing
+   total:  64008
+   procs: 30408 33600 
+timer:        guess loadbal     0.06s     0.06s
+timer:   guess Coulomb potn     0.16s     0.16s
+timer:       guess lda potn     0.06s     0.06s
+data distribution info before redistributing
+   total:  68528
+   procs: 31976 36552 
+data distribution info after redistributing
+   total:  68528
+   procs: 27200 41328 
+timer:        guess loadbal     0.09s     0.09s
+timer:        guess overlap     0.01s     0.01s
+timer:    KEmat reconstruct     0.02s     0.02s
+timer:  KEmat differentiate     0.13s     0.13s
+timer:       KEmat compress     0.03s     0.03s
+timer: KEmat inner products     0.03s     0.03s
+timer:     guess Kinet potn     0.22s     0.22s
+timer:           guess fock     0.30s     0.30s
+timer:      guess eigen sol     0.22s     0.22s
+timer: guess orbital groupi     0.03s     0.03s
+
+Solving NDIM= 3  with thresh 1.000000e-04     k 6    conv 1.000000e-04 
+
+timer:     Project vnuclear     0.15s     0.15s
+
+Iteration 0 at time 2.6s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+data distribution info before redistributing
+   total:  69550
+   procs: 28078 41472 
+data distribution info after redistributing
+   total:  69550
+   procs: 28078 41472 
+timer:       Load balancing     0.07s     0.07s
+timer:       Nuclear energy     0.02s     0.02s
+timer:              Coulomb     0.08s     0.08s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time  3.9s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.12s
+ cpu time spent in apply           0.85s
+ cpu time spent in multiply2       0.18s
+timer:          HF exchange     0.90s     0.90s
+timer:                V*psi     0.17s     0.17s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time  4.8s
+ total cpu time / per world   1.0s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.62s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.68s     0.68s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      96.35970121
+         nonlocal psp       0.00000000
+   nuclear attraction    -292.35053896
+              coulomb      81.22689904
+                  PCM       0.00000000
+ exchange-correlation     -13.62983172
+    nuclear-repulsion      33.45954240
+                total     -94.93422803
+
+timer: Compute residual stu     0.02s     0.02s
+timer:            Apply BSH     0.31s     0.31s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [6.569316e-03, 7.131184e-03, 3.863932e-02, 8.959807e-02, 8.846213e-02, 8.953699e-02, 4.606034e-02, 5.546293e-02, 6.029277e-02, 9.571215e-02]
+BSH residual: rms 6.591735e-02    max 9.571215e-02
+timer:         BSH residual     0.02s     0.02s
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.26s     0.26s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [7.569376e-03, 7.674950e-03, 5.811007e-02, 9.840998e-02, 9.663413e-02, 9.836987e-02, 1.045037e-01, 7.704694e-02]
+BSH residual: rms 7.830193e-02    max 1.045037e-01
+timer:         BSH residual     0.01s     0.01s
+timer: Update subspace stuf     0.03s     0.03s
+timer:   Subspace transform     0.01s     0.01s
+Norm of vector changes alpha : rms 6.591735e-02    max 9.571215e-02
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 7.830193e-02    max 1.045037e-01
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 1 at time 6.2s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+data distribution info before redistributing
+   total:  97972
+   procs: 40916 57056 
+data distribution info after redistributing
+   total:  97972
+   procs: 40916 57056 
+timer:       Load balancing     0.08s     0.08s
+delta rho 7.457578e-02 7.384085e-02 residuals 1.045037e-01 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.08s     0.08s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time  7.4s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.13s
+ cpu time spent in apply           0.85s
+ cpu time spent in multiply2       0.18s
+timer:          HF exchange     0.91s     0.91s
+timer:                V*psi     0.17s     0.17s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time  8.4s
+ total cpu time / per world   1.0s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.60s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.68s     0.68s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      94.87614771
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.08341663
+              coulomb      79.05063549
+                  PCM       0.00000000
+ exchange-correlation     -13.41344696
+    nuclear-repulsion      33.45954240
+                total     -95.11053799
+
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.31s     0.31s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [9.672662e-04, 1.505162e-03, 1.167837e-02, 1.495283e-02, 1.557959e-02, 1.498864e-02, 2.038761e-02, 1.510513e-02, 1.424128e-02, 2.137496e-02]
+BSH residual: rms 1.460848e-02    max 2.137496e-02
+timer:         BSH residual     0.02s     0.02s
+timer: Compute residual stu     0.02s     0.02s
+timer:            Apply BSH     0.25s     0.25s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [1.597341e-03, 1.381891e-03, 1.856716e-02, 1.811223e-02, 1.860844e-02, 1.815975e-02, 2.835776e-02, 1.923960e-02]
+BSH residual: rms 1.777508e-02    max 2.835776e-02
+timer:         BSH residual     0.02s     0.02s
+timer: Update subspace stuf     0.05s     0.05s
+timer:   Subspace transform     0.01s     0.01s
+Norm of vector changes alpha : rms 1.558496e-02    max 2.296090e-02
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 1.868092e-02    max 2.906847e-02
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 2 at time 9.9s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+delta rho 1.567295e-02 1.734444e-02 residuals 2.835776e-02 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.07s     0.07s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time 11.0s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.13s
+ cpu time spent in apply           0.85s
+ cpu time spent in multiply2       0.18s
+timer:          HF exchange     0.90s     0.90s
+timer:                V*psi     0.18s     0.18s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time 11.9s
+ total cpu time / per world   1.0s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.60s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.68s     0.68s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.03s     0.03s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.02434133
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.29353774
+              coulomb      79.13797365
+                  PCM       0.00000000
+ exchange-correlation     -13.45533332
+    nuclear-repulsion      33.45954240
+                total     -95.12701368
+
+timer: Compute residual stu     0.02s     0.02s
+timer:            Apply BSH     0.30s     0.30s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [2.557141e-04, 5.785583e-04, 4.002639e-03, 5.758106e-03, 5.890917e-03, 5.767070e-03, 9.070108e-03, 6.398157e-03, 5.474883e-03, 8.652755e-03]
+BSH residual: rms 5.878663e-03    max 9.070108e-03
+timer:         BSH residual     0.02s     0.02s
+timer: Compute residual stu     0.02s     0.02s
+timer:            Apply BSH     0.24s     0.24s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [4.600438e-04, 6.206432e-04, 1.032987e-02, 8.478673e-03, 8.463391e-03, 8.501385e-03, 1.816960e-02, 1.354650e-02]
+BSH residual: rms 1.022702e-02    max 1.816960e-02
+timer:         BSH residual     0.01s     0.01s
+timer: Update subspace stuf     0.07s     0.07s
+timer:   Subspace transform     0.01s     0.01s
+Norm of vector changes alpha : rms 1.100988e-02    max 1.688183e-02
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 1.822429e-02    max 3.224130e-02
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 3 at time 13.4s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+delta rho 1.248303e-02 1.820999e-02 residuals 1.816960e-02 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.07s     0.07s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time 14.5s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.12s
+ cpu time spent in apply           0.84s
+ cpu time spent in multiply2       0.18s
+timer:          HF exchange     0.91s     0.91s
+timer:                V*psi     0.18s     0.18s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 20 0 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time 15.4s
+ total cpu time / per world   1.0s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.60s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.70s     0.70s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.06375191
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.24558648
+              coulomb      79.06395971
+                  PCM       0.00000000
+ exchange-correlation     -13.47615482
+    nuclear-repulsion      33.45954240
+                total     -95.13448728
+
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.31s     0.31s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [1.195704e-04, 2.213498e-04, 1.141625e-03, 1.977109e-03, 2.140599e-03, 1.968909e-03, 5.364954e-03, 2.952858e-03, 3.459221e-03, 5.165291e-03]
+BSH residual: rms 2.998047e-03    max 5.364954e-03
+timer:         BSH residual     0.02s     0.02s
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.26s     0.26s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [2.611853e-04, 2.016494e-04, 5.021335e-03, 3.405196e-03, 3.438555e-03, 3.414839e-03, 9.760876e-03, 8.185824e-03]
+BSH residual: rms 5.275951e-03    max 9.760876e-03
+timer:         BSH residual     0.01s     0.01s
+timer: Update subspace stuf     0.10s     0.10s
+timer:   Subspace transform     0.03s     0.03s
+Norm of vector changes alpha : rms 7.970550e-03    max 1.475496e-02
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 1.506850e-02    max 2.817204e-02
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 4 at time 17.0s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+delta rho 9.682059e-03 1.465344e-02 residuals 9.760876e-03 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.07s     0.07s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time 18.1s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.12s
+ cpu time spent in apply           0.85s
+ cpu time spent in multiply2       0.18s
+timer:          HF exchange     0.91s     0.91s
+timer:                V*psi     0.17s     0.17s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time 19.0s
+ total cpu time / per world   1.0s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.62s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.67s     0.67s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.08817634
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.22945066
+              coulomb      79.03636681
+                  PCM       0.00000000
+ exchange-correlation     -13.49183117
+    nuclear-repulsion      33.45954240
+                total     -95.13719628
+
+timer: Compute residual stu     0.02s     0.02s
+timer:            Apply BSH     0.31s     0.31s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [8.090991e-05, 1.675004e-04, 1.361036e-03, 1.635904e-03, 1.644070e-03, 1.607351e-03, 3.585111e-03, 1.855646e-03, 1.169207e-03, 2.781293e-03]
+BSH residual: rms 1.877467e-03    max 3.585111e-03
+timer:         BSH residual     0.02s     0.02s
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.25s     0.25s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [1.474154e-04, 1.536745e-04, 2.302666e-03, 9.868875e-04, 1.013433e-03, 9.306961e-04, 4.473529e-03, 4.966456e-03]
+BSH residual: rms 2.571307e-03    max 4.966456e-03
+timer:         BSH residual     0.01s     0.01s
+timer: Update subspace stuf     0.12s     0.12s
+timer:   Subspace transform     0.02s     0.02s
+Norm of vector changes alpha : rms 4.267808e-03    max 8.958849e-03
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 7.861007e-03    max 1.489372e-02
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 5 at time 20.6s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+delta rho 5.580090e-03 7.513319e-03 residuals 4.966456e-03 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.07s     0.07s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time 21.7s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.12s
+ cpu time spent in apply           0.84s
+ cpu time spent in multiply2       0.20s
+timer:          HF exchange     0.90s     0.90s
+timer:                V*psi     0.17s     0.17s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time 22.6s
+ total cpu time / per world   0.9s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.58s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.69s     0.69s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.09760458
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.23965964
+              coulomb      79.04281488
+                  PCM       0.00000000
+ exchange-correlation     -13.49837244
+    nuclear-repulsion      33.45954240
+                total     -95.13807022
+
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.31s     0.31s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [5.413674e-05, 1.229074e-04, 1.066249e-03, 1.350984e-03, 1.402622e-03, 1.335058e-03, 1.225930e-03, 1.153325e-03, 8.116522e-04, 2.084516e-03]
+BSH residual: rms 1.206932e-03    max 2.084516e-03
+timer:         BSH residual     0.02s     0.02s
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.25s     0.25s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [8.077641e-05, 9.108850e-05, 1.528190e-03, 8.186250e-04, 8.151699e-04, 7.949864e-04, 1.859241e-03, 3.436835e-03]
+BSH residual: rms 1.564666e-03    max 3.436835e-03
+timer:         BSH residual     0.01s     0.01s
+timer: Update subspace stuf     0.15s     0.15s
+timer:   Subspace transform     0.03s     0.03s
+Norm of vector changes alpha : rms 3.108573e-03    max 5.338492e-03
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 5.526708e-03    max 1.149418e-02
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 6 at time 24.2s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+delta rho 3.896246e-03 4.814034e-03 residuals 3.436835e-03 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.07s     0.07s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time 25.3s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.13s
+ cpu time spent in apply           0.85s
+ cpu time spent in multiply2       0.18s
+timer:          HF exchange     0.90s     0.90s
+timer:                V*psi     0.18s     0.18s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time 26.2s
+ total cpu time / per world   0.9s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.58s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.69s     0.69s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.14s     0.14s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.10296854
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.25546807
+              coulomb      79.05577274
+                  PCM       0.00000000
+ exchange-correlation     -13.50121413
+    nuclear-repulsion      33.45954240
+                total     -95.13839853
+
+timer: Compute residual stu     0.02s     0.02s
+timer:            Apply BSH     0.31s     0.31s
+timer:     Truncate new psi     0.04s     0.04s
+residuals [5.006855e-05, 1.063573e-04, 6.849291e-04, 7.809622e-04, 8.050544e-04, 8.050561e-04, 8.142586e-04, 8.447794e-04, 8.489965e-04, 1.247512e-03]
+BSH residual: rms 7.773561e-04    max 1.247512e-03
+timer:         BSH residual     0.02s     0.02s
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.24s     0.24s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [6.819475e-05, 8.560181e-05, 1.227938e-03, 5.566549e-04, 4.990621e-04, 5.274707e-04, 7.152823e-04, 2.501857e-03]
+BSH residual: rms 1.068169e-03    max 2.501857e-03
+timer:         BSH residual     0.01s     0.01s
+timer: Update subspace stuf     0.19s     0.19s
+timer:   Subspace transform     0.03s     0.03s
+Norm of vector changes alpha : rms 2.035332e-03    max 3.135322e-03
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 4.036698e-03    max 9.139880e-03
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 7 at time 27.9s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+delta rho 2.215613e-03 3.094632e-03 residuals 2.501857e-03 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.06s     0.06s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time 29.0s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.12s
+ cpu time spent in apply           0.85s
+ cpu time spent in multiply2       0.18s
+timer:          HF exchange     0.90s     0.90s
+timer:                V*psi     0.18s     0.18s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time 29.9s
+ total cpu time / per world   1.0s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.59s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.70s     0.70s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.03s     0.03s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.10289817
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.25763331
+              coulomb      79.05844046
+                  PCM       0.00000000
+ exchange-correlation     -13.50173565
+    nuclear-repulsion      33.45954240
+                total     -95.13848792
+
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.31s     0.31s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [4.363657e-05, 9.403563e-05, 4.636434e-04, 4.588820e-04, 4.142103e-04, 4.106794e-04, 8.736881e-04, 6.111876e-04, 3.444131e-04, 6.909304e-04]
+BSH residual: rms 5.009390e-04    max 8.736881e-04
+timer:         BSH residual     0.02s     0.02s
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.25s     0.25s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [5.737971e-05, 8.251447e-05, 9.490694e-04, 4.430356e-04, 2.904191e-04, 3.233208e-04, 7.564579e-04, 1.891907e-03]
+BSH residual: rms 8.251919e-04    max 1.891907e-03
+timer:         BSH residual     0.02s     0.02s
+timer: Update subspace stuf     0.20s     0.20s
+timer:   Subspace transform     0.04s     0.04s
+Norm of vector changes alpha : rms 1.464843e-03    max 2.302144e-03
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 3.710346e-03    max 8.656551e-03
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 8 at time 31.6s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+delta rho 1.448758e-03 2.615920e-03 residuals 1.891907e-03 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.07s     0.07s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time 32.7s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.12s
+ cpu time spent in apply           0.84s
+ cpu time spent in multiply2       0.18s
+timer:          HF exchange     0.89s     0.89s
+timer:                V*psi     0.17s     0.17s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time 33.6s
+ total cpu time / per world   1.0s  0.5s
+ cpu time spent in multiply1       0.09s
+ cpu time spent in apply           0.59s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.68s     0.68s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.10133946
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.25677880
+              coulomb      79.05924430
+                  PCM       0.00000000
+ exchange-correlation     -13.50190865
+    nuclear-repulsion      33.45954240
+                total     -95.13856129
+
+timer: Compute residual stu     0.02s     0.02s
+timer:            Apply BSH     0.31s     0.31s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [4.343758e-05, 9.524493e-05, 2.848935e-04, 3.737745e-04, 3.752672e-04, 3.515683e-04, 6.855918e-04, 5.844455e-04, 1.119674e-04, 4.457511e-04]
+BSH residual: rms 3.897562e-04    max 6.855918e-04
+timer:         BSH residual     0.02s     0.02s
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.25s     0.25s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [4.471763e-05, 7.896902e-05, 6.961074e-04, 4.939581e-04, 3.200714e-04, 3.846241e-04, 7.813792e-04, 1.276426e-03]
+BSH residual: rms 6.351176e-04    max 1.276426e-03
+timer:         BSH residual     0.01s     0.01s
+timer: Update subspace stuf     0.22s     0.22s
+timer:   Subspace transform     0.05s     0.05s
+Norm of vector changes alpha : rms 1.344164e-03    max 2.288778e-03
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 4.064572e-03    max 9.264280e-03
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 9 at time 35.2s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+delta rho 1.267544e-03 2.715048e-03 residuals 1.276426e-03 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.07s     0.07s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time 36.3s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.13s
+ cpu time spent in apply           0.85s
+ cpu time spent in multiply2       0.18s
+timer:          HF exchange     0.89s     0.89s
+timer:                V*psi     0.18s     0.18s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time 37.3s
+ total cpu time / per world   0.9s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.58s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.69s     0.69s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.09992930
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.25734166
+              coulomb      79.06148653
+                  PCM       0.00000000
+ exchange-correlation     -13.50224071
+    nuclear-repulsion      33.45954240
+                total     -95.13862414
+
+timer: Compute residual stu     0.02s     0.02s
+timer:            Apply BSH     0.31s     0.31s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [4.375023e-05, 1.029960e-04, 3.188503e-04, 4.396437e-04, 4.136459e-04, 4.757888e-04, 5.531208e-04, 4.429491e-04, 1.579131e-04, 6.442246e-04]
+BSH residual: rms 4.058400e-04    max 6.442246e-04
+timer:         BSH residual     0.02s     0.02s
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.25s     0.25s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [3.673657e-05, 8.397982e-05, 3.490534e-04, 3.274552e-04, 2.264430e-04, 2.906545e-04, 6.531323e-04, 6.676811e-04]
+BSH residual: rms 3.945890e-04    max 6.676811e-04
+timer:         BSH residual     0.01s     0.01s
+timer: Update subspace stuf     0.25s     0.25s
+timer:   Subspace transform     0.06s     0.06s
+Norm of vector changes alpha : rms 8.323501e-04    max 1.670765e-03
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 2.274764e-03    max 4.983535e-03
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 10 at time 39.0s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+data distribution info before redistributing
+   total:  295692
+   procs: 130372 165320 
+data distribution info after redistributing
+   total:  295692
+   procs: 130372 165320 
+timer:       Load balancing     0.14s     0.14s
+delta rho 8.175118e-04 1.526123e-03 residuals 6.676811e-04 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.07s     0.07s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time 40.3s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.13s
+ cpu time spent in apply           0.85s
+ cpu time spent in multiply2       0.18s
+timer:          HF exchange     0.89s     0.89s
+timer:                V*psi     0.17s     0.17s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time 41.2s
+ total cpu time / per world   0.9s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.58s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.68s     0.68s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.10s     0.10s
+timer:       KEmat compress     0.03s     0.03s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.17s     0.17s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.09780046
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.25456144
+              coulomb      79.06057029
+                  PCM       0.00000000
+ exchange-correlation     -13.50205288
+    nuclear-repulsion      33.45954240
+                total     -95.13870117
+
+timer: Compute residual stu     0.02s     0.02s
+timer:            Apply BSH     0.31s     0.31s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [3.882644e-05, 8.796816e-05, 3.054526e-04, 2.951711e-04, 2.819869e-04, 2.718206e-04, 3.845988e-04, 2.720156e-04, 1.186033e-04, 4.079374e-04]
+BSH residual: rms 2.730320e-04    max 4.079374e-04
+timer:         BSH residual     0.03s     0.03s
+timer: Compute residual stu     0.02s     0.02s
+timer:            Apply BSH     0.25s     0.25s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [3.068797e-05, 8.269979e-05, 1.979037e-04, 2.812431e-04, 1.892797e-04, 2.183143e-04, 4.963540e-04, 3.213463e-04]
+BSH residual: rms 2.643774e-04    max 4.963540e-04
+timer:         BSH residual     0.01s     0.01s
+timer: Update subspace stuf     0.25s     0.25s
+timer:   Subspace transform     0.06s     0.06s
+Norm of vector changes alpha : rms 6.520965e-04    max 1.284904e-03
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 1.592972e-03    max 3.347131e-03
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 11 at time 42.9s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+delta rho 6.889919e-04 1.061466e-03 residuals 4.963540e-04 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.07s     0.07s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time 44.1s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.12s
+ cpu time spent in apply           0.85s
+ cpu time spent in multiply2       0.18s
+timer:          HF exchange     0.90s     0.90s
+timer:                V*psi     0.17s     0.17s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time 45.0s
+ total cpu time / per world   0.9s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.58s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.69s     0.69s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.09677920
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.25236352
+              coulomb      79.05919882
+                  PCM       0.00000000
+ exchange-correlation     -13.50183406
+    nuclear-repulsion      33.45954240
+                total     -95.13867716
+
+timer: Compute residual stu     0.02s     0.02s
+timer:            Apply BSH     0.31s     0.31s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [3.832440e-05, 8.769988e-05, 2.491298e-04, 2.572379e-04, 1.841398e-04, 1.782585e-04, 2.434609e-04, 1.519379e-04, 5.381318e-05, 2.985855e-04]
+BSH residual: rms 1.942905e-04    max 2.985855e-04
+timer:         BSH residual     0.02s     0.02s
+timer: Compute residual stu     0.01s     0.01s
+timer:            Apply BSH     0.25s     0.25s
+timer:     Truncate new psi     0.03s     0.03s
+residuals [3.103509e-05, 8.446897e-05, 2.549763e-04, 3.055841e-04, 1.797112e-04, 1.894476e-04, 3.765200e-04, 1.540045e-04]
+BSH residual: rms 2.236526e-04    max 3.765200e-04
+timer:         BSH residual     0.01s     0.01s
+timer: Update subspace stuf     0.25s     0.25s
+timer:   Subspace transform     0.06s     0.06s
+Norm of vector changes alpha : rms 4.277441e-04    max 6.946113e-04
+timer:       Orthonormalize     0.03s     0.03s
+Norm of vector changes beta : rms 8.912181e-04    max 1.723344e-03
+timer:       Orthonormalize     0.03s     0.03s
+
+Iteration 12 at time 46.7s
+
+timer:             localize     0.06s     0.06s
+timer:       Make densities     0.05s     0.05s
+delta rho 4.478023e-04 5.858470e-04 residuals 3.765200e-04 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.07s     0.07s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     0.8s at time 47.8s
+ total cpu time / per world   1.4s  0.7s
+ cpu time spent in multiply1       0.12s
+ cpu time spent in apply           0.85s
+ cpu time spent in multiply2       0.20s
+timer:          HF exchange     0.89s     0.89s
+timer:                V*psi     0.17s     0.17s
+timer:        Truncate Vpsi     0.02s     0.02s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     0.6s at time 48.7s
+ total cpu time / per world   1.0s  0.5s
+ cpu time spent in multiply1       0.08s
+ cpu time spent in apply           0.58s
+ cpu time spent in multiply2       0.12s
+timer:          HF exchange     0.69s     0.69s
+timer:                V*psi     0.14s     0.14s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.02s     0.02s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.13s     0.13s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.09670334
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.25172766
+              coulomb      79.05848723
+                  PCM       0.00000000
+ exchange-correlation     -13.50172273
+    nuclear-repulsion      33.45954240
+                total     -95.13871743
+
+
+Converged!
+
+timer:              Overlap     0.01s     0.01s
+timer:      focka eigen sol     0.00s     0.00s
+timer:              Overlap     0.01s     0.01s
+timer:      fockb eigen sol     0.00s     0.00s
+ 
+alpha eigenvalues
+[*] -15.60516741 -11.24284810  -1.16777018  -0.96620059  -0.64846299  -0.58325048  -0.58214588  -0.54154686  -0.52009894  -0.39326721
+
+beta eigenvalues
+[*] -15.55533201 -11.22341458  -0.98669214  -0.89255199  -0.57501396  -0.56966791  -0.55614204  -0.43194247
+
+
+ Dipole Moment (a.u.)
+ -----------
+
+     x:  1.204117e-04
+     y:  -5.672164e-01
+     z:  4.996604e-01
+ Total Dipole Moment:  7.559067e-01 
+
+timer:               dipole     0.01s     0.01s
+Orbitals are localized - energies are diagonal Fock matrix elements
+
+Analysis of alpha MO vectors
+timer:      Analyze vectors     0.21s     0.21s
+timer: Compute eigen gesv a     0.00s     0.00s
+  MO   0 : occ=1.00 : energy= -15.60219033 : ncoeff=1.57e+05:center=(0.00,0.25,-2.65) : radius=0.27
+            N(1)   s( 5)-0.994  
+total number of coefficients = 1.57248000e+05
+
+  MO   1 : occ=1.00 : energy= -11.23658434 : ncoeff=1.57e+05:center=(-0.00,-0.02,2.27) : radius=0.31
+            C(0)   s( 0)-0.998  
+total number of coefficients = 3.14496000e+05
+
+  MO   2 : occ=1.00 : energy=  -0.88640275 : ncoeff=1.37e+05:center=(-0.00,-0.88,-2.86) : radius=1.36
+            N(1)  py( 8)-0.551     H(6)   s(14) 0.418     N(1)   s( 6) 0.407  
+total number of coefficients = 4.51008000e+05
+
+  MO   3 : occ=1.00 : energy=  -0.69694170 : ncoeff=1.35e+05:center=(-1.11,-0.75,2.56) : radius=1.54
+            H(3)   s(11) 0.502     C(0)  px( 2)-0.402     C(0)   s( 1) 0.372     C(0)  py( 3)-0.264  
+total number of coefficients = 5.85792000e+05
+
+  MO   4 : occ=1.00 : energy=  -0.69534225 : ncoeff=1.38e+05:center=(-0.06,1.26,2.69) : radius=1.54
+            H(4)   s(12) 0.500     C(0)  py( 3) 0.468     C(0)   s( 1) 0.372     C(0)  pz( 4) 0.167  
+total number of coefficients = 7.24032000e+05
+
+  MO   5 : occ=1.00 : energy=  -0.69687618 : ncoeff=1.33e+05:center=(1.17,-0.65,2.57) : radius=1.54
+            H(2)   s(10) 0.502     C(0)  px( 2) 0.422     C(0)   s( 1) 0.372     C(0)  py( 3)-0.228  
+total number of coefficients = 8.57088000e+05
+
+  MO   6 : occ=1.00 : energy=  -0.76306319 : ncoeff=1.61e+05:center=(0.00,0.31,-1.78) : radius=1.45
+            N(1)  pz( 9) 0.702     N(1)   s( 6) 0.535     H(5)   s(13) 0.253  
+total number of coefficients = 1.01779200e+06
+
+  MO   7 : occ=1.00 : energy=  -0.63797210 : ncoeff=1.50e+05:center=(0.00,0.69,-3.14) : radius=1.50
+            N(1)   s( 6)-0.739     N(1)  pz( 9) 0.512     N(1)  py( 8)-0.485  
+total number of coefficients = 1.16812800e+06
+
+  MO   8 : occ=1.00 : energy=  -0.52167787 : ncoeff=1.12e+05:center=(-0.00,0.18,-2.61) : radius=1.66
+            N(1)  px( 7)-0.984  
+total number of coefficients = 1.28044800e+06
+
+  MO   9 : occ=1.00 : energy=  -0.51370574 : ncoeff=1.57e+05:center=(0.00,0.04,1.44) : radius=1.86
+            C(0)  pz( 4) 0.772     C(0)   s( 1)-0.387     H(5)   s(13)-0.309  
+total number of coefficients = 1.43769600e+06
+
+Analysis of beta MO vectors
+timer:      Analyze vectors     0.18s     0.18s
+timer: Compute eigen gesv a     0.00s     0.00s
+  MO   0 : occ=1.00 : energy= -15.54981392 : ncoeff=1.57e+05:center=(0.00,0.25,-2.65) : radius=0.27
+            N(1)   s( 5)-0.995  
+total number of coefficients = 1.57248000e+05
+
+  MO   1 : occ=1.00 : energy= -11.21670378 : ncoeff=1.54e+05:center=(-0.00,-0.02,2.27) : radius=0.31
+            C(0)   s( 0)-0.999  
+total number of coefficients = 3.11040000e+05
+
+  MO   2 : occ=1.00 : energy=  -0.80425146 : ncoeff=1.47e+05:center=(-0.00,-1.00,-2.86) : radius=1.38
+            H(6)   s(14) 0.504     N(1)  py( 8)-0.478     N(1)   s( 6) 0.382  
+total number of coefficients = 4.57920000e+05
+
+  MO   3 : occ=1.00 : energy=  -0.67492093 : ncoeff=1.45e+05:center=(-1.17,-0.78,2.51) : radius=1.54
+            H(3)   s(11) 0.541     C(0)  px( 2)-0.377     C(0)   s( 1) 0.364     C(0)  py( 3)-0.244  
+total number of coefficients = 6.03072000e+05
+
+  MO   4 : occ=1.00 : energy=  -0.67343265 : ncoeff=1.57e+05:center=(-0.06,1.34,2.64) : radius=1.55
+            H(4)   s(12) 0.538     C(0)  py( 3) 0.444     C(0)   s( 1) 0.367  
+total number of coefficients = 7.60320000e+05
+
+  MO   5 : occ=1.00 : energy=  -0.67480713 : ncoeff=1.43e+05:center=(1.23,-0.68,2.52) : radius=1.54
+            H(2)   s(10) 0.541     C(0)  px( 2) 0.397     C(0)   s( 1) 0.365     C(0)  py( 3)-0.211  
+total number of coefficients = 9.03744000e+05
+
+  MO   6 : occ=1.00 : energy=  -0.62575515 : ncoeff=1.52e+05:center=(0.00,0.18,-0.60) : radius=1.84
+            H(5)   s(13) 0.642     N(1)  pz( 9) 0.392     C(0)  pz( 4)-0.235  
+total number of coefficients = 1.05580800e+06
+
+  MO   7 : occ=1.00 : energy=  -0.57107236 : ncoeff=1.61e+05:center=(-0.00,0.86,-2.82) : radius=1.68
+            N(1)   s( 6)-0.878     N(1)  py( 8)-0.509  
+total number of coefficients = 1.21651200e+06
+
+
+Solving NDIM= 3  with thresh 1.000000e-06     k 8    conv 1.000000e-04 
+
+timer:     Project vnuclear     0.32s     0.32s
+
+Iteration 0 at time 50.6s
+
+timer:             localize     0.07s     0.07s
+timer:       Make densities     0.06s     0.06s
+data distribution info before redistributing
+   total:  75638
+   procs: 32206 43432 
+data distribution info after redistributing
+   total:  75638
+   procs: 32158 43480 
+timer:       Load balancing     0.21s     0.21s
+timer:       Nuclear energy     0.03s     0.03s
+timer:              Coulomb     0.22s     0.22s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     2.0s at time 53.4s
+ total cpu time / per world   3.5s  1.7s
+ cpu time spent in multiply1       0.14s
+ cpu time spent in apply           2.81s
+ cpu time spent in multiply2       0.23s
+timer:          HF exchange     2.12s     2.12s
+timer:                V*psi     0.26s     0.26s
+timer:        Truncate Vpsi     0.03s     0.03s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.1
+cloud replication cpu time 0.0
+cloud reading cpu time 0.0 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     1.5s at time 55.3s
+ total cpu time / per world   2.4s  1.2s
+ cpu time spent in multiply1       0.10s
+ cpu time spent in apply           1.97s
+ cpu time spent in multiply2       0.15s
+timer:          HF exchange     1.58s     1.58s
+timer:                V*psi     0.22s     0.22s
+timer:        Truncate Vpsi     0.02s     0.02s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.09s     0.09s
+timer:       KEmat compress     0.04s     0.04s
+timer: KEmat inner products     0.03s     0.03s
+timer:            KE matrix     0.17s     0.17s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.00s     0.00s
+timer:            KE redist     0.02s     0.02s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.08s     0.08s
+timer:       KEmat compress     0.03s     0.03s
+timer: KEmat inner products     0.02s     0.02s
+timer:            KE matrix     0.15s     0.15s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.09728737
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.25174197
+              coulomb      79.05834179
+                  PCM       0.00000000
+ exchange-correlation     -13.50171981
+    nuclear-repulsion      33.45954240
+                total     -95.13829021
+
+timer: Compute residual stu     0.03s     0.03s
+timer:            Apply BSH     1.50s     1.50s
+timer:     Truncate new psi     0.11s     0.11s
+residuals [2.326650e-04, 2.619104e-04, 3.760422e-04, 3.496363e-04, 3.670657e-04, 3.661384e-04, 3.607209e-04, 3.972762e-04, 2.927200e-04, 3.801907e-04]
+BSH residual: rms 3.425428e-04    max 3.972762e-04
+timer:         BSH residual     0.03s     0.03s
+timer: Compute residual stu     0.03s     0.03s
+timer:            Apply BSH     1.29s     1.29s
+timer:     Truncate new psi     0.10s     0.10s
+residuals [2.330391e-04, 2.800516e-04, 4.013703e-04, 3.586189e-04, 3.339821e-04, 3.871933e-04, 4.684708e-04, 4.074304e-04]
+BSH residual: rms 3.656106e-04    max 4.684708e-04
+timer:         BSH residual     0.02s     0.02s
+timer: Update subspace stuf     0.03s     0.03s
+timer:   Subspace transform     0.02s     0.02s
+Norm of vector changes alpha : rms 3.425428e-04    max 3.972762e-04
+timer:       Orthonormalize     0.05s     0.05s
+Norm of vector changes beta : rms 3.656106e-04    max 4.684708e-04
+timer:       Orthonormalize     0.04s     0.04s
+
+Iteration 1 at time 59.5s
+
+timer:             localize     0.09s     0.09s
+timer:       Make densities     0.09s     0.09s
+data distribution info before redistributing
+   total:  134628
+   procs: 58652 75976 
+data distribution info after redistributing
+   total:  134628
+   procs: 58572 76056 
+timer:       Load balancing     0.31s     0.31s
+delta rho 4.249560e-04 4.108205e-04 residuals 4.684708e-04 0.000000e+00
+timer:       Nuclear energy     0.01s     0.01s
+timer:              Coulomb     0.25s     0.25s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 0 20 50 
+cloud storing cpu time 0.2
+cloud replication cpu time 0.1
+cloud reading cpu time 0.1 
+cloud cache stores     23
+cloud cache loads      90
+completed taskqueue after     2.6s at time 63.1s
+ total cpu time / per world   4.4s  2.2s
+ cpu time spent in multiply1       0.28s
+ cpu time spent in apply           3.28s
+ cpu time spent in multiply2       0.40s
+timer:          HF exchange     2.85s     2.85s
+timer:                V*psi     0.28s     0.28s
+timer:        Truncate Vpsi     0.03s     0.03s
+number of tasks in taskq 3
+redirecting output to files task.#####
+progress in percent: 20 0 50 
+cloud storing cpu time 0.2
+cloud replication cpu time 0.0
+cloud reading cpu time 0.1 
+cloud cache stores     19
+cloud cache loads      74
+completed taskqueue after     1.9s at time 65.6s
+ total cpu time / per world   3.1s  1.5s
+ cpu time spent in multiply1       0.18s
+ cpu time spent in apply           2.31s
+ cpu time spent in multiply2       0.26s
+timer:          HF exchange     2.15s     2.15s
+timer:                V*psi     0.23s     0.23s
+timer:        Truncate Vpsi     0.03s     0.03s
+timer:            PE matrix     0.03s     0.03s
+timer:   KE compute loadbal     0.01s     0.01s
+timer:            KE redist     0.05s     0.05s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.16s     0.16s
+timer:       KEmat compress     0.05s     0.05s
+timer: KEmat inner products     0.03s     0.03s
+timer:            KE matrix     0.27s     0.27s
+timer: Make fock matrix res     0.00s     0.00s
+timer:            PE matrix     0.02s     0.02s
+timer:   KE compute loadbal     0.01s     0.01s
+timer:            KE redist     0.04s     0.04s
+timer:    KEmat reconstruct     0.01s     0.01s
+timer:  KEmat differentiate     0.13s     0.13s
+timer:       KEmat compress     0.04s     0.04s
+timer: KEmat inner products     0.03s     0.03s
+timer:            KE matrix     0.22s     0.22s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic      95.09502723
+         nonlocal psp       0.00000000
+   nuclear attraction    -289.25182600
+              coulomb      79.05917331
+                  PCM       0.00000000
+ exchange-correlation     -13.50176231
+    nuclear-repulsion      33.45954240
+                total     -95.13984536
+
+
+Converged!
+
+timer:              Overlap     0.01s     0.01s
+timer:      focka eigen sol     0.00s     0.00s
+timer:              Overlap     0.01s     0.01s
+timer:      fockb eigen sol     0.00s     0.00s
+ 
+alpha eigenvalues
+[*] -15.60527748 -11.24269101  -1.16779667  -0.96632467  -0.64844902  -0.58328148  -0.58215510  -0.54155667  -0.52007528  -0.39329081
+
+beta eigenvalues
+[*] -15.55547313 -11.22326886  -0.98674763  -0.89268033  -0.57504609  -0.56968827  -0.55619945  -0.43197486
+
+
+ Dipole Moment (a.u.)
+ -----------
+
+     x:  1.005613e-04
+     y:  -5.672535e-01
+     z:  5.006186e-01
+ Total Dipole Moment:  7.565682e-01 
+
+timer:               dipole     0.01s     0.01s
+Orbitals are localized - energies are diagonal Fock matrix elements
+
+Analysis of alpha MO vectors
+timer:      Analyze vectors     0.33s     0.33s
+timer: Compute eigen gesv a     0.00s     0.00s
+  MO   0 : occ=1.00 : energy= -15.60230009 : ncoeff=7.91e+05:center=(0.00,0.25,-2.65) : radius=0.27
+            N(1)   s( 5)-0.994  
+total number of coefficients = 7.90528000e+05
+
+  MO   1 : occ=1.00 : energy= -11.23642468 : ncoeff=7.86e+05:center=(-0.00,-0.02,2.27) : radius=0.31
+            C(0)   s( 0)-0.998  
+total number of coefficients = 1.57696000e+06
+
+  MO   2 : occ=1.00 : energy=  -0.88636107 : ncoeff=6.39e+05:center=(-0.00,-0.88,-2.86) : radius=1.36
+            N(1)  py( 8)-0.551     H(6)   s(14) 0.419     N(1)   s( 6) 0.407  
+total number of coefficients = 2.21593600e+06
+
+  MO   3 : occ=1.00 : energy=  -0.69699212 : ncoeff=7.25e+05:center=(-1.11,-0.75,2.56) : radius=1.54
+            H(3)   s(11) 0.502     C(0)  px( 2)-0.402     C(0)   s( 1) 0.372     C(0)  py( 3)-0.264  
+total number of coefficients = 2.94092800e+06
+
+  MO   4 : occ=1.00 : energy=  -0.69539639 : ncoeff=6.64e+05:center=(-0.06,1.26,2.69) : radius=1.54
+            H(4)   s(12) 0.500     C(0)  py( 3) 0.468     C(0)   s( 1) 0.372     C(0)  pz( 4) 0.167  
+total number of coefficients = 3.60448000e+06
+
+  MO   5 : occ=1.00 : energy=  -0.69693065 : ncoeff=6.96e+05:center=(1.17,-0.65,2.57) : radius=1.54
+            H(2)   s(10) 0.502     C(0)  px( 2) 0.422     C(0)   s( 1) 0.372     C(0)  py( 3)-0.228  
+total number of coefficients = 4.30080000e+06
+
+  MO   6 : occ=1.00 : energy=  -0.76306266 : ncoeff=8.48e+05:center=(0.00,0.31,-1.78) : radius=1.45
+            N(1)  pz( 9) 0.702     N(1)   s( 6) 0.535     H(5)   s(13) 0.254  
+total number of coefficients = 5.14867200e+06
+
+  MO   7 : occ=1.00 : energy=  -0.63798336 : ncoeff=7.70e+05:center=(0.01,0.69,-3.14) : radius=1.50
+            N(1)   s( 6)-0.739     N(1)  pz( 9) 0.512     N(1)  py( 8)-0.485  
+total number of coefficients = 5.91872000e+06
+
+  MO   8 : occ=1.00 : energy=  -0.52165559 : ncoeff=6.55e+05:center=(-0.01,0.18,-2.61) : radius=1.66
+            N(1)  px( 7)-0.984  
+total number of coefficients = 6.57408000e+06
+
+  MO   9 : occ=1.00 : energy=  -0.51379154 : ncoeff=7.86e+05:center=(0.00,0.04,1.44) : radius=1.86
+            C(0)  pz( 4) 0.772     C(0)   s( 1)-0.387     H(5)   s(13)-0.309  
+total number of coefficients = 7.36051200e+06
+
+Analysis of beta MO vectors
+timer:      Analyze vectors     0.28s     0.28s
+timer: Compute eigen gesv a     0.00s     0.00s
+  MO   0 : occ=1.00 : energy= -15.54995683 : ncoeff=8.48e+05:center=(0.00,0.25,-2.65) : radius=0.27
+            N(1)   s( 5)-0.995  
+total number of coefficients = 8.47872000e+05
+
+  MO   1 : occ=1.00 : energy= -11.21655879 : ncoeff=7.41e+05:center=(-0.00,-0.02,2.27) : radius=0.31
+            C(0)   s( 0)-0.999  
+total number of coefficients = 1.58924800e+06
+
+  MO   2 : occ=1.00 : energy=  -0.80426800 : ncoeff=6.64e+05:center=(-0.00,-1.00,-2.86) : radius=1.38
+            H(6)   s(14) 0.504     N(1)  py( 8)-0.478     N(1)   s( 6) 0.382  
+total number of coefficients = 2.25280000e+06
+
+  MO   3 : occ=1.00 : energy=  -0.67498255 : ncoeff=7.58e+05:center=(-1.17,-0.78,2.51) : radius=1.54
+            H(3)   s(11) 0.541     C(0)  px( 2)-0.377     C(0)   s( 1) 0.364     C(0)  py( 3)-0.244  
+total number of coefficients = 3.01056000e+06
+
+  MO   4 : occ=1.00 : energy=  -0.67348169 : ncoeff=7.17e+05:center=(-0.06,1.34,2.64) : radius=1.54
+            H(4)   s(12) 0.538     C(0)  py( 3) 0.444     C(0)   s( 1) 0.367  
+total number of coefficients = 3.72736000e+06
+
+  MO   5 : occ=1.00 : energy=  -0.67486804 : ncoeff=7.25e+05:center=(1.23,-0.68,2.52) : radius=1.54
+            H(2)   s(10) 0.541     C(0)  px( 2) 0.397     C(0)   s( 1) 0.365     C(0)  py( 3)-0.211  
+total number of coefficients = 4.45235200e+06
+
+  MO   6 : occ=1.00 : energy=  -0.62585532 : ncoeff=7.13e+05:center=(0.00,0.18,-0.60) : radius=1.84
+            H(5)   s(13) 0.642     N(1)  pz( 9) 0.392     C(0)  pz( 4)-0.234  
+total number of coefficients = 5.16505600e+06
+
+  MO   7 : occ=1.00 : energy=  -0.57110736 : ncoeff=7.58e+05:center=(-0.00,0.86,-2.82) : radius=1.68
+            N(1)   s( 6)-0.878     N(1)  py( 8)-0.509  
+total number of coefficients = 5.92281600e+06
+
+final energy=    -95.13984536 
+SCF DATA TO JSON
+timer:             plotting     0.00s     0.00s
+
+    Parallel environment
+    --------------------
+                  #nodes    2
+       #threads per node    17+main+server = 19
+          #total threads    38
+
+  RMI message statistics (min / avg / max)
+  ----------------------
+   #messages in server q    0.00e+00 / 5.00e-01 / 1.00e+00
+ #messages sent per node    4.30e+05 / 4.89e+05 / 5.48e+05
+    #bytes sent per node    2.71e+09 / 2.87e+09 / 3.02e+09
+ #messages recv per node    4.30e+05 / 4.89e+05 / 5.48e+05
+    #bytes recv per node    2.71e+09 / 2.87e+09 / 3.02e+09
+        #msgs systemwide    9.78e+05
+       #bytes systemwide    5.73e+09
+
+  Thread pool statistics (min / avg / max)
+  ----------------------
+         #tasks per node    2.95e+07 / 3.27e+07 / 3.59e+07
+     #max q len per node    1.25e+04 / 1.55e+04 / 1.85e+04
+  #hi-pri tasks per node    1.09e+07 / 1.25e+07 / 1.41e+07
+
+         Total wall time    67.7s
+         Total  cpu time    67.7s
+
