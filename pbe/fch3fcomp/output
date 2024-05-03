@@ -1,4 +1,4 @@
-(dn018:0,1)
+(dn023:0,1)
 
 MADNESS runtime initialized with 17 threads in the pool and affinity OFF
 
@@ -22,11 +22,282 @@ MADNESS runtime initialized with 17 threads in the pool and affinity OFF
              tuning for ... default
                     MPI ... multiple
  multi-threaded runtime ... MADNESS ThreadPool
-                   BLAS ... Intel MKL 45590 45608 MFLOP/s
+                   BLAS ... Intel MKL 45408 45475 MFLOP/s
                compiled ... 11:50:55  on  Apr 30 2024
     git source description ...     last_svn-5193-gb7c6dfc93-dirty
     built date/time ...     Apr 30 2024/11:50:54
 
 input filename:  struc.xyz
-MADNESS: fatal error: nalpha+nbeta != nelec 26
-Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+
+
+
+ MADNESS Hartree-Fock and Density Functional Theory Program
+ ----------------------------------------------------------
+
+
+
+geometry
+         source_type  inputfile  # derived   where to get the coordinates from       [inputfile, xyz, library]
+         source_name  struc.xyz  # derived   name of the geometry from the library or the input file
+               eprec  1.0000e-04 # default   smoothing for the nuclear potential
+               units  angstrom   # defined   coordinate units                        [atomic, angstrom, bohr, au]
+               field  [0.0000e+00, 0.0000e+00, 0.0000e+00] # default   external electric field
+           no_orient  false      # default   if true the molecule coordinates will not be reoriented and/or symmetrized
+              symtol  -1.0000e-02 # default   distance threshold for determining the symmetry-equivalent atoms; 
+                                 #            negative: old algorithm
+           core_type  none       # default   core potential type                     [none, mcp]
+            psp_calc  false      # default   pseudopotential calculation for all atoms
+             pure_ae  true       # default   pure all electron calculation with no pseudo-atoms
+    F             -3.491511                   0                   0
+    C           -0.79722584                   0                   0
+    H           -0.13954379         -0.96714507           1.6751444
+    H           -0.13954379         -0.96714507          -1.6751444
+    H           -0.13954379           1.9342901                   0
+    F             4.0695095                   0                   0
+end
+
+
+dft
+              prefix  struc      # derived   prefixes your output/restart/json/plot/etc files
+              charge  -1.0000e+00 # defined   total molecular charge
+                  xc  pbe        # defined   XC input line
+             hfexalg  multiworld # default   hf exchange algorithm: choose from multiworld (default), smallmem, 
+                                 #           largemem
+               smear  0.0000e+00 # default   smearing parameter
+               econv  1.0000e-05 # default   energy convergence
+               dconv  1.0000e-04 # default   density convergence
+convergence_criteria  [bsh_residual, total_energy] # default   possible values are: bsh_residual, total_energy, 
+                                 #                             each_energy, density
+                   k  -1         # default   polynomial order
+                   l  5.4070e+01 # derived   user coordinates box size
+               deriv  abgv       # default   derivative method                       [abgv, bspline, ble]
+           dft_deriv  abgv       # default   derivative method for gga               [abgv, bspline, ble]
+                                 #           potentials
+             maxrotn  2.5000e-01 # default   step restriction used in autoshift algorithm
+             nvalpha  0          # default   number of alpha virtuals to compute
+              nvbeta  0          # default   number of beta virtuals to compute
+               nopen  0          # defined   number of unpaired electrons = nalpha-nbeta
+             maxiter  25         # default   maximum number of iterations
+                 nio  1          # default   no. of io servers to use
+     spin_restricted  true       # default   true if spin restricted
+              plotlo  0          # default   range of MOs to print (for both spins if polarized
+              plothi  -1         # default   range of MOs to print (for both spins if polarized
+            plotdens  false      # default   If true print the density at convergence
+            plotcoul  false      # default   If true plot the total coulomb potential at convergence
+            localize  new        # default   localization method                     [pm, boys, new, canon]
+          pointgroup  c1         # derived   use point (sub) group symmetry if       [c1, c2, ci, cs, c2v, c2h, d2, d2h]
+                                 #           not localized
+             restart  true       # defined   if true restart from orbitals on disk
+           restartao  false      # default   if true restart from orbitals projected into AO basis (STO3G) on disk
+              noiter  true       # defined   if true break after computing energies for HF-DFT
+          no_compute  false      # default   if true use orbitals on disk, set value to computed
+                save  true       # default   if true save orbitals to disk
+              maxsub  10         # default   size of iterative subspace ... set to 0 or 1 to disable
+        orbitalshift  0.0000e+00 # default   scf orbital shift: shift the occ orbitals to lower energies
+            npt_plot  101        # default   no. of points to use in each dim for plots
+           plot_cell  []         # default   lo hi in each dimension for plotting (default is all space)
+             aobasis  6-31g      # derived   AO basis used for initial guess (6-31gss, 6-31g, 3-21g, sto-6g, sto-3g)
+         derivatives  false      # default   if true calculate nuclear derivatives
+              dipole  false      # default   if true calculate dipole moment
+      conv_only_dens  false      # default   if true remove bsh_residual from convergence criteria (deprecated)
+            psp_calc  false      # default   pseudopotential calculation for all atoms
+            pcm_data  none       # default   do a PCM (solvent) calculation
+             ac_data  none       # default   do a calculation with asymptotic correction (see ACParameters class in 
+                                 #           chem/AC.h for details)
+             pure_ae  true       # default   pure all electron calculation with no pseudo-atoms
+         print_level  3          # default   0: no output; 1: final energy; 2: iterations; 3: timings; 10: debug
+ molecular_structure  inputfile  # default   where to read the molecule from: inputfile or name from the library
+              nalpha  14         # derived   number of alpha spin electrons
+               nbeta  14         # derived   number of beta  spin electrons
+           nmo_alpha  14         # derived   number of alpha spin molecular orbitals
+            nmo_beta  14         # derived   number of beta spin molecular orbitals
+                  lo  1.0921e-03 # derived   smallest length scale we need to resolve
+            protocol  [1.0000e-06] # defined   calculation protocol
+                gopt  false      # default   geometry optimizer
+                gtol  1.0000e-04 # default   geometry tolerance
+               gtest  false      # default   geometry tolerance
+                gval  1.0000e-05 # default   value precision
+               gprec  1.0000e-04 # default   gradient precision
+            gmaxiter  20         # default   optimization maxiter
+    ginitial_hessian  false      # default   compute inital hessian for optimization
+              algopt  bfgs       # default   algorithm used for optimization         [bfgs, cg]
+           nv_factor  1          # default   factor to multiply number of virtual orbitals with when automatically 
+                                 #           decreasing nvirt
+           vnucextra  2          # default   load balance parameter for nuclear pot
+        loadbalparts  2          # default   ??
+              nwfile  none       # default   Base name of nwchem output files (.out and .movecs extensions) to read 
+                                 #           from
+timer:           initialize     0.22s     0.22s
+
+Solving NDIM= 3  with thresh 1.000000e-04     k 6    conv 1.000000e-04 
+
+timer:     Project vnuclear     0.15s     0.15s
+data distribution info before redistributing
+   total:  64155
+   procs: 31758 32397 
+data distribution info after redistributing
+   total:  64155
+   procs: 33818 30337 
+
+Solving NDIM= 3  with thresh 1.000000e-06     k 8    conv 1.000000e-04 
+
+Restarting from this molecular geometry
+geometry
+         source_type  inputfile  # derived   where to get the coordinates from       [inputfile, xyz, library]
+         source_name  struc.xyz  # derived   name of the geometry from the library or the input file
+               eprec  1.0000e-04 # default   smoothing for the nuclear potential
+               units  angstrom   # defined   coordinate units                        [atomic, angstrom, bohr, au]
+               field  [0.0000e+00, 0.0000e+00, 0.0000e+00] # default   external electric field
+           no_orient  false      # default   if true the molecule coordinates will not be reoriented and/or symmetrized
+              symtol  -1.0000e-02 # default   distance threshold for determining the symmetry-equivalent atoms; 
+                                 #            negative: old algorithm
+           core_type  none       # default   core potential type                     [none, mcp]
+            psp_calc  false      # default   pseudopotential calculation for all atoms
+             pure_ae  true       # default   pure all electron calculation with no pseudo-atoms
+    F             -3.491511                   0                   0
+    C           -0.79722584                   0                   0
+    H           -0.13954379         -0.96714507           1.6751444
+    H           -0.13954379         -0.96714507          -1.6751444
+    H           -0.13954379           1.9342901                   0
+    F             4.0695095                   0                   0
+end
+
+Solving NDIM= 3  with thresh 1.000000e-06     k 8    conv 1.000000e-04 
+
+timer:     Project vnuclear     0.32s     0.32s
+
+Iteration 0 at time 1.7s
+
+timer:             localize     0.10s     0.10s
+timer:       Make densities     0.07s     0.07s
+data distribution info before redistributing
+   total:  94884
+   procs: 50688 44196 
+data distribution info after redistributing
+   total:  94884
+   procs: 41260 53624 
+timer:       Load balancing     0.17s     0.17s
+timer:       Nuclear energy     0.04s     0.04s
+timer:              Coulomb     0.39s     0.39s
+timer:        DFT potential     0.71s     0.71s
+timer:                V*psi     1.03s     1.03s
+timer:        Truncate Vpsi     0.10s     0.10s
+timer:            PE matrix     0.04s     0.04s
+timer:   KE compute loadbal     0.01s     0.01s
+timer:            KE redist     0.08s     0.08s
+timer:    KEmat reconstruct     0.02s     0.02s
+timer:  KEmat differentiate     0.23s     0.23s
+timer:       KEmat compress     0.08s     0.08s
+timer: KEmat inner products     0.04s     0.04s
+timer:            KE matrix     0.37s     0.37s
+timer: Make fock matrix res     0.00s     0.00s
+
+              kinetic     238.52050036
+         nonlocal psp       0.00000000
+   nuclear attraction    -705.99392780
+              coulomb     191.15552978
+                  PCM       0.00000000
+ exchange-correlation     -27.49312168
+    nuclear-repulsion      64.36222991
+                total    -239.44878943
+
+
+ Dipole Moment (a.u.)
+ -----------
+
+     x:  -2.635532e+00
+     y:  2.434623e-05
+     z:  -2.177011e-06
+ Total Dipole Moment:  2.635532e+00 
+
+timer:               dipole     0.01s     0.01s
+Orbitals are localized - energies are diagonal Fock matrix elements
+
+Analysis of alpha MO vectors
+timer:      Analyze vectors     0.53s     0.53s
+timer: Compute eigen gesv a     0.00s     0.00s
+  MO   0 : occ=1.00 : energy= -26.09998971 : ncoeff=6.10e+05:center=(-3.49,0.00,0.00) : radius=0.21
+            F(0)   s( 0)-0.994  
+total number of coefficients = 6.10304000e+05
+
+  MO   1 : occ=1.00 : energy= -25.85464050 : ncoeff=5.94e+05:center=(4.07,-0.00,-0.00) : radius=0.21
+            F(5)   s(13)-0.994  
+total number of coefficients = 1.20422400e+06
+
+  MO   2 : occ=1.00 : energy= -11.10757246 : ncoeff=6.27e+05:center=(-0.80,0.00,0.00) : radius=0.31
+            C(1)   s( 5)-0.999  
+total number of coefficients = 1.83091200e+06
+
+  MO   3 : occ=1.00 : energy=  -1.02067299 : ncoeff=7.82e+05:center=(-3.98,0.00,-0.00) : radius=1.12
+            F(0)   s( 1) 0.907     F(0)  px( 2)-0.492     F(0)   s( 0)-0.229  
+total number of coefficients = 2.61324800e+06
+
+  MO   4 : occ=1.00 : energy=  -1.10663451 : ncoeff=7.66e+05:center=(4.07,-0.00,0.00) : radius=1.15
+            F(5)   s(14) 1.026     F(5)   s(13)-0.268  
+total number of coefficients = 3.37920000e+06
+
+  MO   5 : occ=1.00 : energy=  -0.51400012 : ncoeff=7.86e+05:center=(-0.41,-0.66,1.15) : radius=1.49
+            H(2)   s(10)-0.513     C(1)  pz( 9)-0.414     C(1)   s( 6)-0.365     C(1)  py( 8) 0.239  
+total number of coefficients = 4.16563200e+06
+
+  MO   6 : occ=1.00 : energy=  -0.91718463 : ncoeff=7.99e+05:center=(-2.61,-0.00,0.00) : radius=1.24
+            F(0)  px( 2)-0.648     F(0)   s( 1)-0.454     C(1)  px( 7) 0.309     C(1)   s( 6)-0.188  
+total number of coefficients = 4.96435200e+06
+
+  MO   7 : occ=1.00 : energy=  -0.51400077 : ncoeff=7.86e+05:center=(-0.41,-0.66,-1.15) : radius=1.49
+            H(3)   s(11) 0.513     C(1)  pz( 9)-0.414     C(1)   s( 6) 0.365     C(1)  py( 8)-0.239  
+total number of coefficients = 5.75078400e+06
+
+  MO   8 : occ=1.00 : energy=  -0.51400555 : ncoeff=7.41e+05:center=(-0.41,1.33,0.00) : radius=1.49
+            H(4)   s(12) 0.513     C(1)  py( 8) 0.478     C(1)   s( 6) 0.365  
+total number of coefficients = 6.49216000e+06
+
+  MO   9 : occ=1.00 : energy=  -0.21184858 : ncoeff=5.69e+05:center=(4.06,-0.00,0.00) : radius=1.48
+            F(5)  py(16)-0.960  
+total number of coefficients = 7.06150400e+06
+
+  MO  10 : occ=1.00 : energy=  -0.21184755 : ncoeff=5.57e+05:center=(4.06,0.00,-0.00) : radius=1.48
+            F(5)  pz(17) 0.960  
+total number of coefficients = 7.61856000e+06
+
+  MO  11 : occ=1.00 : energy=  -0.21494141 : ncoeff=7.99e+05:center=(4.05,0.00,-0.00) : radius=1.49
+            F(5)  px(15) 0.962  
+total number of coefficients = 8.41728000e+06
+
+  MO  12 : occ=1.00 : energy=  -0.46275016 : ncoeff=4.71e+05:center=(-3.45,-0.00,0.00) : radius=1.34
+            F(0)  pz( 4) 0.976  
+total number of coefficients = 8.88832000e+06
+
+  MO  13 : occ=1.00 : energy=  -0.46275945 : ncoeff=5.04e+05:center=(-3.45,-0.00,0.00) : radius=1.34
+            F(0)  py( 3) 0.976  
+total number of coefficients = 9.39212800e+06
+
+final energy=   -239.44878943 
+SCF DATA TO JSON
+timer:             plotting     0.00s     0.00s
+
+    Parallel environment
+    --------------------
+                  #nodes    2
+       #threads per node    17+main+server = 19
+          #total threads    38
+
+  RMI message statistics (min / avg / max)
+  ----------------------
+   #messages in server q    0.00e+00 / 0.00e+00 / 0.00e+00
+ #messages sent per node    5.09e+04 / 6.00e+04 / 6.92e+04
+    #bytes sent per node    1.63e+08 / 1.92e+08 / 2.22e+08
+ #messages recv per node    5.09e+04 / 6.00e+04 / 6.92e+04
+    #bytes recv per node    1.63e+08 / 1.92e+08 / 2.22e+08
+        #msgs systemwide    1.20e+05
+       #bytes systemwide    3.84e+08
+
+  Thread pool statistics (min / avg / max)
+  ----------------------
+         #tasks per node    2.37e+06 / 2.58e+06 / 2.80e+06
+     #max q len per node    2.82e+04 / 2.95e+04 / 3.09e+04
+  #hi-pri tasks per node    1.03e+06 / 1.13e+06 / 1.23e+06
+
+         Total wall time    6.0s
+         Total  cpu time    6.0s
+
