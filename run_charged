@@ -1,0 +1,55 @@
+#!/bin/bash
+#SBATCH --job-name=hf_bh76
+#SBATCH --error=error
+#SBATCH -p extended-40core
+#SBATCH --nodes=1
+#SBATCH --time=80:00:00
+
+source /gpfs/software/intel/oneAPI/2022_2/setvars.sh
+module load devel
+
+export MAD_NUM_THREADS=18
+export I_MPI_PIN_DOMAIN=socket
+
+MOLDFT=/gpfs/home/hborchert/devel/compile/madness-hfdft/src/apps/moldft/moldft
+
+cd fch3clcomp2
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd hoch3fts
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd fch3clts
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd f-
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd hoch3fcomp1
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd hoch3fcomp2
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd oh-
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd clch3clcomp
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd fch3fts
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd cl-
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd clch3clts
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd ..
+cd fch3fcomp
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
+cd fch3clcomp1
+mpirun -ppn 2 -n 2 -print-rank-map $MOLDFT struc.xyz &> output
+cd ..
